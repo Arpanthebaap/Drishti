@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drishti — Predictive Risk Intelligence | IDBI Innovate 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F8F7FC;
+  --panel:#FFFFFF;
+  --line:#E6E3F2;
+  --indigo:#4338CA;
+  --indigo-d:#312186;
+  --indigo-tint:#EEECFB;
+  --amber:#F59E0B;
+  --amber-tint:#FEF3E0;
+  --red:#DC2626;
+  --red-tint:#FCE8E8;
+  --green:#16A34A;
+  --green-tint:#E7F7ED;
+  --ink:#1C1B2E;
+  --slate:#6B7280;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;min-height:100vh;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+.display{font-family:'Space Grotesk',sans-serif;}
+
+.shell{max-width:1180px;margin:0 auto;padding:30px 28px 60px;}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;flex-wrap:wrap;gap:14px;}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand .mark{
+  width:40px;height:40px;border-radius:11px;background:var(--indigo);
+  display:flex;align-items:center;justify-content:center;position:relative;
+}
+.brand .mark .eye{width:18px;height:10px;border:2px solid white;border-radius:50%;position:relative;}
+.brand .mark .eye::after{content:"";position:absolute;top:50%;left:50%;width:5px;height:5px;background:var(--amber);border-radius:50%;transform:translate(-50%,-50%);}
+.brand h1{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:21px;margin:0;color:var(--indigo-d);letter-spacing:-0.01em;}
+.brand .sub{font-size:11.5px;color:var(--slate);margin-top:1px;}
+.pill{
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--indigo-d);background:var(--indigo-tint);border:1px solid var(--indigo);
+  padding:6px 12px;border-radius:20px;
+}
+.tagline{color:var(--slate);font-size:14px;margin:4px 0 22px;max-width:700px;line-height:1.55;}
+
+.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:22px;flex-wrap:wrap;}
+.tab{padding:11px 18px;font-size:13.5px;font-weight:700;color:var(--slate);cursor:pointer;border-bottom:2px solid transparent;font-family:'Space Grotesk',sans-serif;}
+.tab.active{color:var(--indigo-d);border-bottom-color:var(--amber);}
+.tab:hover:not(.active){color:var(--ink);}
+.view{display:none;}
+.view.active{display:block;}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;}
+.card h3{font-family:'Space Grotesk',sans-serif;font-size:15px;margin:0 0 4px;color:var(--indigo-d);font-weight:700;}
+.card .desc{font-size:12px;color:var(--slate);margin-bottom:14px;line-height:1.5;}
+
+.grid2{display:grid;grid-template-columns:1.1fr 1fr;gap:18px;}
+@media (max-width:900px){.grid2{grid-template-columns:1fr;}}
+
+/* ---- Tab 1 ---- */
+.accuracy-row{display:flex;gap:16px;margin-bottom:18px;flex-wrap:wrap;}
+.accuracy-card{flex:1;min-width:220px;border-radius:14px;padding:18px;text-align:center;}
+.accuracy-card.old{background:#F2F1F7;}
+.accuracy-card.new{background:var(--indigo-tint);border:1.5px solid var(--indigo);}
+.accuracy-card .ak{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);margin-bottom:6px;}
+.accuracy-card .av{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:800;}
+.accuracy-card.old .av{color:var(--slate);}
+.accuracy-card.new .av{color:var(--indigo);}
+.accuracy-card .al{font-size:11px;color:var(--slate);margin-top:4px;}
+.accuracy-arrow{display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--amber);font-weight:800;}
+
+.portfolio-list{display:flex;flex-direction:column;gap:8px;}
+.prow{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;}
+.prow.highlight{border-color:var(--amber);background:var(--amber-tint);}
+.prow .pname{flex:1;}
+.prow .pname .n{font-size:13px;font-weight:700;color:var(--ink);}
+.prow .pname .m{font-size:10.5px;color:var(--slate);margin-top:1px;}
+.band{font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;width:52px;text-align:center;}
+.band.green{background:var(--green-tint);color:var(--green);}
+.band.amber{background:var(--amber-tint);color:#B37200;}
+.band.red{background:var(--red-tint);color:var(--red);}
+.score-num2{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:16px;width:34px;text-align:center;}
+.trend-arrow{width:60px;text-align:center;font-size:11px;font-weight:700;font-family:'IBM Plex Mono',monospace;}
+.trend-arrow.down{color:var(--red);}
+.trend-arrow.up{color:var(--green);}
+.trend-arrow.flat{color:var(--slate);}
+
+/* ---- Tab 2: graph ---- */
+.graph-wrap{display:flex;justify-content:center;padding:10px 0;}
+.graph-legend{display:flex;gap:16px;justify-content:center;margin-top:10px;flex-wrap:wrap;}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--slate);}
+.legend-dot{width:10px;height:10px;border-radius:50%;}
+.scenario-bar{display:flex;justify-content:space-between;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:18px;flex-wrap:wrap;gap:10px;}
+.scenario-bar .label{font-size:12.5px;color:var(--slate);}
+.scenario-bar .title{font-family:'Space Grotesk',sans-serif;font-size:15px;color:var(--ink);margin-top:2px;}
+.btn{background:var(--indigo);color:white;border:none;border-radius:9px;padding:11px 20px;font-weight:700;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;}
+.btn:hover{transform:translateY(-1px);}
+.btn:disabled{opacity:0.4;cursor:not-allowed;}
+.contagion-log{margin-top:14px;}
+.log-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:11.5px;opacity:0;animation:fadeIn .4s ease forwards;}
+@keyframes fadeIn{to{opacity:1;}}
+.log-item .li-dot{width:8px;height:8px;border-radius:50%;margin-top:4px;flex-shrink:0;}
+.log-item b{color:var(--ink);}
+
+/* ---- Tab 3: breakdown ---- */
+.expert-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.expert-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;}
+.expert-card .ek{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--slate);margin-bottom:4px;}
+.expert-card .et{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.expert-bar-track{background:#EEECFB;border-radius:6px;height:8px;overflow:hidden;}
+.expert-bar-fill{height:100%;border-radius:6px;}
+.expert-card .ev{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;margin-top:6px;}
+
+.unified-score{
+  background:linear-gradient(145deg, var(--indigo-d), var(--indigo));border-radius:16px;padding:22px;color:white;text-align:center;margin-bottom:16px;
+}
+.unified-score .uk{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#C9C4F2;margin-bottom:6px;}
+.unified-score .uv{font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:800;}
+.unified-score .uband{display:inline-block;margin-top:6px;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;background:var(--amber-tint);color:#B37200;}
+
+.driver-list{display:flex;flex-direction:column;gap:8px;}
+.driver-item{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:12px;display:flex;gap:10px;align-items:flex-start;}
+.driver-item .dn{font-family:'Space Grotesk',sans-serif;font-weight:800;color:var(--amber);flex-shrink:0;}
+
+.action-card{margin-top:14px;background:var(--amber-tint);border:1px solid var(--amber);border-radius:12px;padding:14px;font-size:12px;color:var(--ink);}
+.action-card b{color:#B37200;}
+
+.footer-note{margin-top:26px;font-size:11px;color:var(--slate);text-align:center;line-height:1.6;}
+.footer-note b{color:var(--ink);}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header>
+    <div class="brand">
+      <div class="mark"><div class="eye"></div></div>
+      <div>
+        <h1>Drishti</h1>
+        <div class="sub">Predictive Risk Intelligence for MSME Lending</div>
+      </div>
+    </div>
+    <div class="pill">IDBI Innovate 2026 · Track 04</div>
+  </header>
+  <p class="tagline">Most MSME defaults aren't caused by the borrower's own books quietly rotting — they're contagion events from a stressed buyer or supplier. Drishti watches the network, not just the entity, to flag stress 12 months out.</p>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="radar">Portfolio Early Warning</div>
+    <div class="tab" data-tab="graph">Supply Chain Contagion Graph</div>
+    <div class="tab" data-tab="breakdown">Multi-Modal Score Breakdown</div>
+  </div>
+
+  <!-- ============ TAB 1: PORTFOLIO EARLY WARNING ============ -->
+  <div class="view active" id="view-radar">
+    <div class="accuracy-row">
+      <div class="accuracy-card old">
+        <div class="ak">CURRENT CAPABILITY</div>
+        <div class="av">16–22%</div>
+        <div class="al">Structured-data-only, single-model, 12-month default prediction</div>
+      </div>
+      <div class="accuracy-arrow">→</div>
+      <div class="accuracy-card new">
+        <div class="ak">DRISHTI TARGET</div>
+        <div class="av">90%</div>
+        <div class="al">Multi-modal ensemble + supply-chain contagion graph</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Portfolio Early Warning Radar</h3>
+      <div class="desc">Every loan, every type, one common score and risk band — re-computed monthly, trend tracked over time.</div>
+      <div class="portfolio-list" id="portfolioList"></div>
+    </div>
+  </div>
+
+  <!-- ============ TAB 2: SUPPLY CHAIN CONTAGION GRAPH ============ -->
+  <div class="view" id="view-graph">
+    <div class="scenario-bar">
+      <div>
+        <div class="label">SCENARIO</div>
+        <div class="title">Sundar Textiles — own financials look stable, but watch its buyer</div>
+      </div>
+      <button class="btn" id="graphBtn" onclick="runContagion()">▶ Simulate Buyer Stress</button>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Buyer-Supplier Network</h3>
+        <div class="desc">Built from GST e-invoice and e-way bill data — risk propagates along real trade relationships.</div>
+        <div class="graph-wrap"><svg width="420" height="280" viewBox="0 0 420 280" id="graphSvg"></svg></div>
+        <div class="graph-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:var(--green);"></div>Stable</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--amber);"></div>Early stress</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--red);"></div>High stress</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Contagion Log</h3>
+        <div class="desc">What Drishti sees, in order, before it ever shows up in Sundar Textiles' own bank statement.</div>
+        <div class="contagion-log" id="contagionLog"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TAB 3: MULTI-MODAL SCORE BREAKDOWN ============ -->
+  <div class="view" id="view-breakdown">
+    <div class="card" style="margin-bottom:16px;">
+      <h3>Sundar Textiles — Working Capital Loan, ₹42,00,000</h3>
+      <div class="desc">Four expert models, weighted for this borrower's segment, combined into one common score.</div>
+    </div>
+    <div class="expert-grid">
+      <div class="expert-card">
+        <div class="ek">STRUCTURED / FINANCIAL</div>
+        <div class="et">Bureau + ratios + repayment history</div>
+        <div class="expert-bar-track"><div class="expert-bar-fill" style="width:78%;background:var(--green);"></div></div>
+        <div class="ev" style="color:var(--green);">78 / 100 — Stable</div>
+      </div>
+      <div class="expert-card">
+        <div class="ek">UNSTRUCTURED / NLP</div>
+        <div class="et">RM visit notes, litigation, news</div>
+        <div class="expert-bar-track"><div class="expert-bar-fill" style="width:61%;background:var(--amber);"></div></div>
+        <div class="ev" style="color:#B37200;">61 / 100 — Watch</div>
+      </div>
+      <div class="expert-card">
+        <div class="ek">SUPPLY CHAIN GRAPH</div>
+        <div class="et">Buyer/supplier contagion signal</div>
+        <div class="expert-bar-track"><div class="expert-bar-fill" style="width:34%;background:var(--red);"></div></div>
+        <div class="ev" style="color:var(--red);">34 / 100 — High Risk</div>
+      </div>
+      <div class="expert-card">
+        <div class="ek">BEHAVIORAL / TIME-SERIES</div>
+        <div class="et">EPFO trend, utility payment trend</div>
+        <div class="expert-bar-track"><div class="expert-bar-fill" style="width:58%;background:var(--amber);"></div></div>
+        <div class="ev" style="color:#B37200;">58 / 100 — Watch</div>
+      </div>
+    </div>
+
+    <div class="unified-score">
+      <div class="uk">UNIFIED EARLY WARNING SCORE</div>
+      <div class="uv">58</div>
+      <div class="uband">AMBER — ELEVATED RISK, 12-MONTH WINDOW</div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Top 3 Stress Drivers</h3>
+        <div class="desc">Same standardized format regardless of which expert model is driving the score.</div>
+        <div class="driver-list">
+          <div class="driver-item"><div class="dn">01</div><div>Buyer concentration risk rising — Metro Retail Chain, 46% of revenue, now averaging 41-day payment delay vs. 15-day contracted terms</div></div>
+          <div class="driver-item"><div class="dn">02</div><div>EPFO contribution reduced 22% over the last 3 months relative to 12-month average</div></div>
+          <div class="driver-item"><div class="dn">03</div><div>RM visit note (last month) flagged "reduced floor activity, 2 of 4 production lines idle on visit day"</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Recommended Action</h3>
+        <div class="desc">A probability becomes a workflow trigger, not just a number on a dashboard.</div>
+        <div class="action-card">
+          <b>AMBER protocol:</b> Proactive relationship-manager outreach within 2 weeks. Review working-capital limit utilization trend. Open a restructuring conversation before the account misses a payment — not after.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note">Drishti demo runs on scripted synthetic portfolio data. In production, signals are computed server-side from GST e-invoice/e-way bill data, Account Aggregator, EPFO, RM CRM notes, and news/litigation feeds via IDBI's sandbox APIs. <b>No real borrower data is used in this prototype.</b></div>
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.onclick = ()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('view-' + tab.dataset.tab).classList.add('active');
+  };
+});
+
+// ---------------- TAB 1: PORTFOLIO LIST ----------------
+const PORTFOLIO = [
+  {name:"Ramesh Auto Spares", type:"Term Loan", score:84, band:"green", trend:"up"},
+  {name:"Anjali Handicrafts", type:"Working Capital", score:74, band:"green", trend:"flat"},
+  {name:"Sundar Textiles", type:"Working Capital", score:58, band:"amber", trend:"down"},
+  {name:"Kiran Bakers Co-op", type:"Equipment Finance", score:69, band:"amber", trend:"flat"},
+  {name:"Meenal Fashions", type:"Trade Finance (LC)", score:71, band:"amber", trend:"up"},
+  {name:"Vikram Logistics", type:"Term Loan", score:31, band:"red", trend:"down"},
+];
+const trendGlyph = {up:"↑ Improving", flat:"→ Stable", down:"↓ Declining"};
+function renderPortfolio(){
+  const list = document.getElementById('portfolioList');
+  list.innerHTML = '';
+  PORTFOLIO.forEach(item=>{
+    const row = document.createElement('div');
+    row.className = 'prow' + (item.name === 'Sundar Textiles' ? ' highlight' : '');
+    row.innerHTML = `
+      <div class="pname"><div class="n">${item.name}</div><div class="m">${item.type}</div></div>
+      <div class="score-num2" style="color:${item.band==='green'?'var(--green)':item.band==='amber'?'#B37200':'var(--red)'};">${item.score}</div>
+      <div class="band ${item.band}">${item.band}</div>
+      <div class="trend-arrow ${item.trend}">${trendGlyph[item.trend]}</div>
+    `;
+    list.appendChild(row);
+  });
+}
+renderPortfolio();
+
+// ---------------- TAB 2: CONTAGION GRAPH ----------------
+const ns = "http://www.w3.org/2000/svg";
+function buildGraph(){
+  const svg = document.getElementById('graphSvg');
+  svg.innerHTML = '';
+  const nodes = {
+    sundar: {x:210, y:150, r:32, label:"Sundar\nTextiles", color:"#16A34A", id:"sundar"},
+    buyer: {x:80, y:60, r:26, label:"Metro Retail\nChain (Buyer)", color:"#16A34A", id:"buyer"},
+    buyer2: {x:80, y:230, r:22, label:"Local\nRetailers", color:"#16A34A", id:"buyer2"},
+    supplier: {x:340, y:60, r:24, label:"Yarn\nSupplier", color:"#16A34A", id:"supplier"},
+    bank: {x:340, y:230, r:24, label:"IDBI\n(Lender)", color:"#4338CA", id:"bank"},
+  };
+  const edges = [["sundar","buyer"],["sundar","buyer2"],["sundar","supplier"],["sundar","bank"]];
+  edges.forEach(([a,b])=>{
+    const n1 = nodes[a], n2 = nodes[b];
+    const line = document.createElementNS(ns,'line');
+    line.setAttribute('x1',n1.x); line.setAttribute('y1',n1.y);
+    line.setAttribute('x2',n2.x); line.setAttribute('y2',n2.y);
+    line.setAttribute('stroke','#D8D4EC'); line.setAttribute('stroke-width','2');
+    line.setAttribute('id', 'edge-'+a+'-'+b);
+    svg.appendChild(line);
+  });
+  Object.values(nodes).forEach(n=>{
+    const circle = document.createElementNS(ns,'circle');
+    circle.setAttribute('cx',n.x); circle.setAttribute('cy',n.y); circle.setAttribute('r',n.r);
+    circle.setAttribute('fill',n.color); circle.setAttribute('id','node-'+n.id);
+    circle.setAttribute('stroke','white'); circle.setAttribute('stroke-width','3');
+    svg.appendChild(circle);
+    const text = document.createElementNS(ns,'text');
+    text.setAttribute('x',n.x); text.setAttribute('y', n.y + n.r + 14);
+    text.setAttribute('text-anchor','middle'); text.setAttribute('font-size','9.5');
+    text.setAttribute('font-family','Inter'); text.setAttribute('fill','#1C1B2E'); text.setAttribute('font-weight','600');
+    n.label.split('\n').forEach((line,i)=>{
+      const tspan = document.createElementNS(ns,'tspan');
+      tspan.setAttribute('x', n.x); tspan.setAttribute('dy', i===0?0:11);
+      tspan.textContent = line;
+      text.appendChild(tspan);
+    });
+    svg.appendChild(text);
+  });
+}
+buildGraph();
+
+const contagionSteps = [
+  {t:'ok', text:'<b>Metro Retail Chain</b> (46% of Sundar Textiles’ revenue) begins paying invoices 25+ days late — first deviation from a stable 15-day pattern.'},
+  {t:'warn', text:'Delay pattern persists for 6 weeks. Graph model flags Metro Retail Chain node as <b>early stress</b>.'},
+  {t:'warn', text:'Risk propagates one hop: Sundar Textiles’ contagion sub-score drops, even though its own bank statement still looks stable.'},
+  {t:'danger', text:'E-way bill volume from Sundar Textiles to Metro Retail Chain falls 30% — confirms reduced order flow, not just payment timing.'},
+  {t:'danger', text:'Unified Early Warning Score crosses into <b>AMBER</b> — 12 months before this would surface in a quarterly financial review.'},
+];
+let graphRunning = false;
+function runContagion(){
+  if(graphRunning) return;
+  graphRunning = true;
+  document.getElementById('graphBtn').disabled = true;
+  const log = document.getElementById('contagionLog');
+  log.innerHTML = '';
+  buildGraph();
+  const colors = {ok:'#F59E0B', warn:'#F59E0B', danger:'#DC2626'};
+  contagionSteps.forEach((step, i)=>{
+    setTimeout(()=>{
+      const div = document.createElement('div');
+      div.className = 'log-item';
+      div.innerHTML = `<div class="li-dot" style="background:${colors[step.t]}"></div><div>${step.text}</div>`;
+      log.appendChild(div);
+      log.scrollTop = log.scrollHeight;
+
+      if(i === 1){
+        document.getElementById('node-buyer').setAttribute('fill', '#F59E0B');
+        document.getElementById('edge-sundar-buyer').setAttribute('stroke', '#F59E0B');
+        document.getElementById('edge-sundar-buyer').setAttribute('stroke-width', '3');
+      }
+      if(i === 2){
+        document.getElementById('node-sundar').setAttribute('fill', '#F59E0B');
+      }
+      if(i === 4){
+        document.getElementById('node-sundar').setAttribute('fill', '#DC2626');
+        document.getElementById('node-buyer').setAttribute('fill', '#DC2626');
+      }
+      if(i === contagionSteps.length - 1){
+        graphRunning = false;
+        document.getElementById('graphBtn').disabled = false;
+      }
+    }, i * 900);
+  });
+}
+</script>
+</body>
+</html>
