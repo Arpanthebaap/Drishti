@@ -43,4 +43,4 @@ Open `index.html` → try all three tabs → on the Contagion Graph tab, click "
 Arpan Ghosh (Solo Participant), Contact: arpanghosh984@gmail.com | https://arpanghosh.in/ 
 
 ## License
-Built for IDBI Innovate 2026 submission purposes.
+Built for IDBI Innovate 2026 submission purposes. MIT LICENSE: https://github.com/Arpanthebaap/Drishti/blob/main/LICENSE 
