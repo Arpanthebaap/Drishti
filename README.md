@@ -40,7 +40,7 @@ Open `index.html` → try all three tabs → on the Contagion Graph tab, click "
 - **Phase 3 — Scale (ongoing):** Full portfolio coverage across all loan types, continuous retraining.
 
 ## Team
-[Add your name, role, and contact here]
+Arpan Ghosh (Solo Participant), Contact: arpanghosh984@gmail.com | https://arpanghosh.in/ 
 
 ## License
 Built for IDBI Innovate 2026 submission purposes.
